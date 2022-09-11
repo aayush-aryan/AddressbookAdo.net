@@ -12,8 +12,10 @@ namespace AddressbookADO.net
             //addressBookRepository.DataBaseConnection();
             //int rowcount=addressBookRepository.GetAllContact();
             //addressBookRepository.UpdateAddreessBookRecordsByContactId(1);
-           int Rcount= addressBookRepository.GetContactDetailsAddedInParticularPeriod("2018-01-01","2022-01-01");
-            Console.WriteLine(Rcount);
+          // int Rcount= addressBookRepository.GetContactDetailsAddedInParticularPeriod("2018-01-01","2022-01-01");
+           // Console.WriteLine(Rcount);
+            int RCount=addressBookRepository.RetrieveContactFromCityOrStateName("Grugram","Haryana");
+            Console.WriteLine("No of records :"+RCount);
         }
     }
 }

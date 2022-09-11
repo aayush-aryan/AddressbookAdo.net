@@ -31,7 +31,15 @@ namespace AddressbookAdoTestProject
             int actualRow = addressBookRepository.GetContactDetailsAddedInParticularPeriod("2018-01-01", "2022-01-01");
             int expectedRow = 2;
             Assert.AreEqual(expectedRow, actualRow);
+        }
 
+        [TestMethod]
+        public void TestMethod_ForRetrivingRecordsByCityOrState()
+        {
+            AddressBookRepository addressBookRepository = new AddressBookRepository();
+            int actualRow = addressBookRepository.RetrieveContactFromCityOrStateName("Grugram", "Haryana");
+            int expectedRow = 1;
+            Assert.AreEqual(expectedRow, actualRow);
         }
 
 
