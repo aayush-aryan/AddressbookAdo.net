@@ -1,5 +1,6 @@
 using AddressbookADO.net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace AddressbookAdoTestProject
 {
@@ -41,7 +42,27 @@ namespace AddressbookAdoTestProject
             int expectedRow = 1;
             Assert.AreEqual(expectedRow, actualRow);
         }
+        [TestMethod]
+        public void TestMethod_ForaddigcontactsInDB()
+        {
+            AddressBookRepository addressBookRepository = new AddressBookRepository();
 
+            AddressBookModel model = new AddressBookModel();
+            model.FirstName = "Amit";
+            model.LastName = "Sharma";
+            model.Address = "sector-70";
+            model.City = "Noida";
+            model.State = "UttarPardesh";
+            model.ZipCode = "800900";
+            model.PhoneNumber = "8311155510";
+            model.EmailId = "amit@gmail.com";
+            model.AddressBookType = "Friend";
+            model.AddressBookName = "expecte";
+            model.AddedDate = Convert.ToDateTime("2022-02-02");
+           bool actual = addressBookRepository.AddContactsInAddressBook(model);
+            bool expecte = true;
+            Assert.AreEqual(expecte, actual);
+        }
 
     }
 }

@@ -261,6 +261,51 @@ namespace AddressbookADO.net
             return rowCount;
 
         }
+        /// <summary>
+        /// Method to Add Contacts in database
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public bool AddContactsInAddressBook(AddressBookModel model)
+        {
+            try
+            {
+                using (connection) // Using the connection established
+                {
+                    SqlCommand command = new SqlCommand("dbo.SpAddContactsDetails", connection); // Implementing the stored procedure
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@FirstName", model.FirstName);
+                    command.Parameters.AddWithValue("@LastName", model.LastName);
+                    command.Parameters.AddWithValue("@Address", model.Address);
+                    command.Parameters.AddWithValue("@City", model.City);
+                    command.Parameters.AddWithValue("@State", model.State);
+                    command.Parameters.AddWithValue("@ZipCode", model.ZipCode);
+                    command.Parameters.AddWithValue("@PhoneNumber", model.PhoneNumber);
+                    command.Parameters.AddWithValue("@EmailID", model.EmailId);
+                    command.Parameters.AddWithValue("@addressBookType", model.AddressBookType);
+                    command.Parameters.AddWithValue("@addressBookName", model.AddressBookName);
+                    command.Parameters.AddWithValue("@AddedDate", model.AddedDate);
+
+                    connection.Open();
+                    var result = command.ExecuteNonQuery();
+                    connection.Close();
+
+                    if (result != 0)  //Return the result of the transaction 
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();  
+            }
+        }
     }
 }
 
