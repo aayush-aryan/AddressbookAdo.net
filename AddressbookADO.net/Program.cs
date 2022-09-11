@@ -10,7 +10,7 @@ namespace AddressbookADO.net
 
             AddressBookRepository addressBookRepository = new AddressBookRepository();
             //addressBookRepository.DataBaseConnection();
-            addressBookRepository.GetAllContact();
+            int rowcount=addressBookRepository.GetAllContact();
         }
     }
 }

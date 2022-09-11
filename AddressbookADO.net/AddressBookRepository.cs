@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AddressbookADO.net
 {
-    class AddressBookRepository
+   public class AddressBookRepository
     {
         //Specifying the connection string from the sql server connection.
         private static string connectionString = @"Data Source=DESKTOP-EPUK1PJ;Initial Catalog=addressbookDB;Integrated Security=True;";
@@ -34,8 +34,9 @@ namespace AddressbookADO.net
         /// <summary>
         /// method for Retriveing all Enteries from database;
         /// </summary>
-        public void GetAllContact()
+        public int GetAllContact()
         {
+            int rowCount = 0;
             AddressBookModel model = new AddressBookModel();
             try
             {
@@ -49,8 +50,10 @@ namespace AddressbookADO.net
                     SqlDataReader reader = command.ExecuteReader();  // executing the sql data reader to fetch the records
                     if (reader.HasRows)
                     {
+                        //count = reader.;
                         while (reader.Read())  // Mapping the data to the AddressBookModel class object
                         {
+                            rowCount++;
                             model.ContactId = reader.GetInt32(0); //ToInt32(sqlDataReader["ContactId"]);
                             model.FirstName = reader.GetString(1);
                             model.LastName = reader.GetString(2);
@@ -84,6 +87,7 @@ namespace AddressbookADO.net
             {
                 connection.Close(); 
             }
+            return rowCount;
         }
     }
 }
