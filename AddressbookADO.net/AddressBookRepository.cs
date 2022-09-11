@@ -89,5 +89,47 @@ namespace AddressbookADO.net
             }
             return rowCount;
         }
+        /// <summary>
+        /// Method For Updating Record on the basis of ContactId
+        /// </summary>
+        /// <param name="contactid"></param>
+        /// <returns></returns>
+
+        public int UpdateAddreessBookRecordsByContactId(int ContactId)
+        {
+            int result = 0;
+            AddressBookModel model = new AddressBookModel();
+            try
+            {
+                using (connection)
+                {
+                    string query = string.Format("update AddressBook set Address ='Laxmi Nagar',City='Delhi' where ContactId={0}", ContactId); // Query to update particular records in table;
+
+                    // Impementing the command on the connection fetched database table
+                    SqlCommand command = new SqlCommand(query, connection);
+                    connection.Open();  //Open the connection.
+                    result = command.ExecuteNonQuery();// returns no of affected rows
+                    if (result != 1)
+                    {
+                        Console.WriteLine("record not updtaed succuessfully");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Record updtaed succuessfully");
+                    }
+                    
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+
+            finally
+            {
+                connection.Close();
+            }
+            return result;
+        }
     }
 }
