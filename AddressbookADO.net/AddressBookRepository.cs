@@ -12,7 +12,7 @@ namespace AddressbookADO.net
         // Establishing the connection using the Sqlconnection.
         SqlConnection connection = new SqlConnection(connectionString);
         /// <summary>
-        /// Method for established 
+        /// Method for established connections
         /// </summary>
         public void DataBaseConnection()
         {
@@ -49,7 +49,7 @@ namespace AddressbookADO.net
                     SqlDataReader reader = command.ExecuteReader();  // executing the sql data reader to fetch the records
                     if (reader.HasRows)
                     {
-                        while (reader.Read())  // Mapping the data to the employee model class object
+                        while (reader.Read())  // Mapping the data to the AddressBookModel class object
                         {
                             model.ContactId = reader.GetInt32(0); //ToInt32(sqlDataReader["ContactId"]);
                             model.FirstName = reader.GetString(1);
@@ -82,7 +82,7 @@ namespace AddressbookADO.net
 
             finally
             {
-                connection.Close(); // Always ensuring the closing of the connection
+                connection.Close(); 
             }
         }
     }
