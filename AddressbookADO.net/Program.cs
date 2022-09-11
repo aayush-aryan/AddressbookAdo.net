@@ -11,7 +11,9 @@ namespace AddressbookADO.net
             AddressBookRepository addressBookRepository = new AddressBookRepository();
             //addressBookRepository.DataBaseConnection();
             //int rowcount=addressBookRepository.GetAllContact();
-            addressBookRepository.UpdateAddreessBookRecordsByContactId(1);
+            //addressBookRepository.UpdateAddreessBookRecordsByContactId(1);
+           int Rcount= addressBookRepository.GetContactDetailsAddedInParticularPeriod("2018-01-01","2022-01-01");
+            Console.WriteLine(Rcount);
         }
     }
 }

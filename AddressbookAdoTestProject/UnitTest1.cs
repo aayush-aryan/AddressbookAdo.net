@@ -21,7 +21,17 @@ namespace AddressbookAdoTestProject
             AddressBookRepository addressBookRepository = new AddressBookRepository();
             int actualResult = addressBookRepository.UpdateAddreessBookRecordsByContactId(1);
             int expectedResult = 1;
-            Assert.AreEqual(actualResult, expectedResult);
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void TestMethod_ForRetrivingRecordsForPartiularTimePeriod()
+        {
+            AddressBookRepository addressBookRepository = new AddressBookRepository();
+            int actualRow = addressBookRepository.GetContactDetailsAddedInParticularPeriod("2018-01-01", "2022-01-01");
+            int expectedRow = 2;
+            Assert.AreEqual(expectedRow, actualRow);
+
         }
 
 
